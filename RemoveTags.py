@@ -9,39 +9,13 @@
 # You may assume the input does not include any unclosed tags, that is,  
 # there will be no '<' without a following '>'.
 
-def remove_tags(string):
-    result = "";
-    if string.find("<") == -1:
-        return string.split(" ");
-    else:
-        while True:
-            first = string.find("<");
-            if first > 0:
-                result = result + " " + string[0:first];
-                string = string[first:];
-            elif first == 0:
-                second = string.find(">");
-                string = string[second+1:];
-                if (string.find("<") == -1):
-                    result = result + " " + string;
-            else:
-                break;
-        result = result.split(" ");
-        res = [];
-        for elem in result:
-            if "\n" in elem:
-                z = [];
-                z = elem.split("\n");
-                for elem in z:
-                    res.append(elem);
-            if elem != "":
-                res.append(elem);
-        k = [];
-        for elem in res:
-            if elem != "":
-                k.append(elem);
-        return k;
-
+def remove_tags(instr):
+    while instr.find('<')!=-1:
+        opening=instr.find('<')
+        closing=instr.find('>',opening)
+        instr=instr[0:opening]+" "+instr[closing+1:]
+    result=instr.split()    
+    return result
 
 
 
